@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  zeppelin:
+    build: .
+    container_name: zeppelin
+    ports:
+      - "8080:8080"
+    environment:
+      ZEPPELIN_NOTEBOOK_DIR: /notebooks
+      ZEPPELIN_LOG_DIR: /logs
+      SPARK_HOME: /opt/spark
+    volumes:
+      - ./notebooks:/notebooks
+      - ./data:/tmp/sandbox_zeppelin
+      - ./logs:/logs
+    restart: unless-stopped
